@@ -95,7 +95,7 @@ w11 = Wall(154, 205, 50, 460, 75, 10, 165)
 w12 = Wall(154, 205, 50, 460, 75, 135, 10)
 w13 = Wall(154, 205, 50, 555, 180, 190, 10)
 
-game = False
+game = True
 finish = False
 clock = pygame.time.Clock()
 FPS = 60
@@ -155,7 +155,7 @@ while game:
         pygame.sprite.collide_rect(player, w1) or 
         pygame.sprite.collide_rect(player, w2) or
         pygame.sprite.collide_rect(player, w3) or
-        #pygame.sprite.collide_rect(player, w4) or 
+        # pygame.sprite.collide_rect(player, w4) or 
         pygame.sprite.collide_rect(player, w5) or 
         pygame.sprite.collide_rect(player, w6) or
         pygame.sprite.collide_rect(player, w7) or
@@ -165,8 +165,8 @@ while game:
         pygame.sprite.collide_rect(player, w11) or
         pygame.sprite.collide_rect(player, w12) or
         pygame.sprite.collide_rect(player, w13)):
-        finish = True
-        window.blit(lose, (200,200))
+        # finish = False
+        # window.blit(lose, (200,200))
         kick.play()
         
         # Натисніть "Space" для рестарту
@@ -175,14 +175,15 @@ while game:
             finish = False
             player.rect.x = 5
             player.rect.y = win_height - 80
+        player = Player('pngwing.com (2).png', 5, win_height - 80, 4) 
 
     if pygame.sprite.collide_rect(player, final) :
         finish = True
-        window.blit(win, (200,200))
         money.play()
-        for i in range(100):
-            i += 1
+        pygame.display.update()
+        
         break
+       
 
     pygame.display.update()
     clock.tick(FPS)
@@ -204,7 +205,6 @@ monster1 = Enemy('monster.png', win_width - 80, 280, 2)
 final1 = GameSprite('motor.png', win_width - 120, win_height - 80, 0)
 kick1 = pygame.mixer.Sound('kick.ogg')
 while True:
-    break
     window2.blit(background2, (0,0))
     
     for event in pygame.event.get():
@@ -262,7 +262,7 @@ while True:
     w12.draw_wall()
     w13.draw_wall()
     
-    if (pygame.sprite.collide_rect(player1, final1,) or 
+    if (
         pygame.sprite.collide_rect(player1, monster1) or
         pygame.sprite.collide_rect(player1, w1) or 
         pygame.sprite.collide_rect(player1, w2) or
@@ -277,11 +277,108 @@ while True:
         pygame.sprite.collide_rect(player1, w11) or
         pygame.sprite.collide_rect(player1, w12) or
         pygame.sprite.collide_rect(player1, w13)):
-        finish = True
-        window.blit(lose, (200,200))
         kick1.play()
+        pygame.display.update()
+        player1 = Player('pngwing.com (2).png', 5, win_height - 80, 4)
+    elif pygame.sprite.collide_rect(player1, final1):
         break
 
+    pygame.display.update()
+    clock.tick(60)
+
+
+window5 = pygame.display.set_mode((win_width, win_height))
+pygame.display.set_caption("Maze5")
+background5 = pygame.transform.scale(pygame.image.load("64.jpg"), (win_width, win_height))
+
+
+
+playerW = False
+playerS = False
+playerA = False
+playerD = False
+player5 = Player('pngwing.com (2).png', 5, win_height - 80, 4)
+monster5 = Enemy('monster.png', win_width - 80, 280, 2)
+final5 = GameSprite('motor.png', win_width - 120, win_height - 80, 0)
+kick5 = pygame.mixer.Sound('kick.ogg')
+while True:
+    window5.blit(background5, (0,0))
+    
+    for event in pygame.event.get():
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_w:
+                playerW = True
+        elif event.type == pygame.KEYUP:
+            if event.key == pygame.K_w:
+                playerW = False
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_s:
+                playerS = True
+        elif event.type == pygame.KEYUP:
+            if event.key == pygame.K_s:
+                playerS = False
+    if playerW:
+        player5.rect.y -= 10
+    if playerS:
+        player5.rect.y += 10
+    
+    if player5.rect.x < 5:
+        player5.rect.x = player5.rect.x
+    player5.update()
+    final5.update()
+    monster5.update()
+    player5.reset()
+    final5.reset()
+    monster5.reset()
+
+    w1 = Wall(154, 205, 50, 80, 80, 10, 500)
+    w2 = Wall(154, 205, 50, 80, 480, 450, 10)
+    w3 = Wall(154, 205, 50, 180, 400, 350, 10)
+    #w4 = Wall(154, 205, 50, 525, 400, 10, 100)
+    w5 = Wall(154, 205, 50, 180, 0, 10, 320)
+    w6 = Wall(154, 205, 50, 180, 310, 200, 10)
+    w7 = Wall(154, 205, 50, 460, 230, 10, 170)
+    w8 = Wall(154, 205, 50, 270, 230, 200, 10)
+    w9 = Wall(154, 205, 50, 270, 75, 10, 165)
+    w10 = Wall(154, 205, 50, 360, 0, 10, 160)
+    w11 = Wall(154, 205, 50, 460, 75, 10, 165)
+    w12 = Wall(154, 205, 50, 460, 75, 135, 10)
+    w13 = Wall(154, 205, 50, 555, 180, 190, 10)
+    
+    w1.draw_wall()
+    w2.draw_wall()
+    w3.draw_wall()
+    #w4.draw_wall()
+    w5.draw_wall()
+    w6.draw_wall()
+    w7.draw_wall()
+    w8.draw_wall()
+    w9.draw_wall()
+    w10.draw_wall()
+    w11.draw_wall()
+    w12.draw_wall()
+    w13.draw_wall()
+    
+    if (
+        pygame.sprite.collide_rect(player5, monster5) or
+        pygame.sprite.collide_rect(player5, w1) or 
+        pygame.sprite.collide_rect(player5, w2) or
+        pygame.sprite.collide_rect(player5, w3) or
+        #pygame.sprite.collide_rect(player1, w5) or 
+        pygame.sprite.collide_rect(player5, w5) or 
+        pygame.sprite.collide_rect(player5, w6) or
+        pygame.sprite.collide_rect(player5, w7) or
+        pygame.sprite.collide_rect(player5, w8) or
+        pygame.sprite.collide_rect(player5, w9) or
+        pygame.sprite.collide_rect(player5, w10) or
+        pygame.sprite.collide_rect(player5, w11) or
+        pygame.sprite.collide_rect(player5, w12) or
+        pygame.sprite.collide_rect(player5, w13)):
+        kick5.play()
+        pygame.display.update()
+        player5 = Player('pngwing.com (2).png', 5, win_height - 80, 4)
+    elif pygame.sprite.collide_rect(player5, final5):
+        break
 
     pygame.display.update()
     clock.tick(60)
@@ -388,7 +485,8 @@ while run:
         #подія натискання на пробіл - спрайт стріляє
         elif e.type == pygame.KEYDOWN:
             if e.key == pygame.K_SPACE:
-                pygame.fire_sound.play()
+                pygame.mixer.music.load("fire.ogg")
+                pygame.mixer.music.play(0)
                 ship.fire()
     
     # сама гра: дії спрайтів, перевірка правил гри, перемальовка
@@ -421,14 +519,13 @@ while run:
 
         # можливий програш: пропустили занадто багато або герой зіткнувся з ворогом
         if pygame.sprite.spritecollide(ship, monsters, False) or lost >= max_lost:
-            finish = True # програли, ставимо тло і більше не керуємо спрайтами.
-            window3.blit(lose, (200, 200))
-            
+            while True:
+                window3.blit(lose, (200, 200))
+                pygame.display.update()
         # перевірка виграшу: скільки очок набрали?
-        if score >= 10:
-            finish = True
-            window3.blit(win, (200, 200))
-
-
+        if score >= 11:
+            while True:
+                window3.blit(win, (200, 200))
+                pygame.display.update()       
     pygame.display.update()
     clock.tick(60)
