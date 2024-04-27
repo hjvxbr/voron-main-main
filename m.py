@@ -10,6 +10,7 @@ class GameSprite(pygame.sprite.Sprite):
         self.speed = player_speed
         # кожен спрайт повинен зберігати властивість rect - прямокутник, в який він вписаний
         self.rect = self.image.get_rect()
+        self.rect.inflate_ip(-10,-10)
         self.rect.x = player_x
         self.rect.y = player_y
 
@@ -234,49 +235,32 @@ while True:
     final1.reset()
     monster1.reset()
 
-    w1 = Wall(154, 205, 50, 80, 80, 10, 500)
-    w2 = Wall(154, 205, 50, 80, 480, 450, 10)
-    w3 = Wall(154, 205, 50, 180, 400, 350, 10)
-    #w4 = Wall(154, 205, 50, 525, 400, 10, 100)
-    w5 = Wall(154, 205, 50, 180, 0, 10, 320)
-    w6 = Wall(154, 205, 50, 180, 310, 200, 10)
-    w7 = Wall(154, 205, 50, 460, 230, 10, 170)
-    w8 = Wall(154, 205, 50, 270, 230, 200, 10)
-    w9 = Wall(154, 205, 50, 270, 75, 10, 165)
-    w10 = Wall(154, 205, 50, 360, 0, 10, 160)
-    w11 = Wall(154, 205, 50, 460, 75, 10, 165)
-    w12 = Wall(154, 205, 50, 460, 75, 135, 10)
-    w13 = Wall(154, 205, 50, 555, 180, 190, 10)
-    
+    w1 = Wall(154, 205, 50, 100, 20, 450, 10)
+    w2 = Wall(154, 205, 50, 100, 480, 350, 10)
+    w3 = Wall(154, 205, 50, 100, 20, 10, 380)
+    w4 = Wall(154, 205, 50, 200, 130, 10, 350)
+    w5 = Wall(154, 205, 50, 450, 130, 10, 360)
+    w6 = Wall(154, 205, 50, 300, 20, 10, 350)
+    w7 = Wall(154, 205, 50, 390, 120, 130, 10)
+
     w1.draw_wall()
     w2.draw_wall()
     w3.draw_wall()
-    #w4.draw_wall()
+    w4.draw_wall()
     w5.draw_wall()
     w6.draw_wall()
     w7.draw_wall()
-    w8.draw_wall()
-    w9.draw_wall()
-    w10.draw_wall()
-    w11.draw_wall()
-    w12.draw_wall()
-    w13.draw_wall()
+
     
     if (
         pygame.sprite.collide_rect(player1, monster1) or
         pygame.sprite.collide_rect(player1, w1) or 
         pygame.sprite.collide_rect(player1, w2) or
         pygame.sprite.collide_rect(player1, w3) or
-        #pygame.sprite.collide_rect(player1, w4) or 
+        pygame.sprite.collide_rect(player1, w4) or 
         pygame.sprite.collide_rect(player1, w5) or 
-        pygame.sprite.collide_rect(player1, w6) or
-        pygame.sprite.collide_rect(player1, w7) or
-        pygame.sprite.collide_rect(player1, w8) or
-        pygame.sprite.collide_rect(player1, w9) or
-        pygame.sprite.collide_rect(player1, w10) or
-        pygame.sprite.collide_rect(player1, w11) or
-        pygame.sprite.collide_rect(player1, w12) or
-        pygame.sprite.collide_rect(player1, w13)):
+        pygame.sprite.collide_rect(player1, w6)or
+        pygame.sprite.collide_rect(player1, w7)):
         kick1.play()
         pygame.display.update()
         player1 = Player('pngwing.com (2).png', 5, win_height - 80, 4)
@@ -289,7 +273,7 @@ while True:
 
 window5 = pygame.display.set_mode((win_width, win_height))
 pygame.display.set_caption("Maze5")
-background5 = pygame.transform.scale(pygame.image.load("64.jpg"), (win_width, win_height))
+background5 = pygame.transform.scale(pygame.image.load("foto.jpg"), (win_width, win_height))
 
 
 
@@ -298,8 +282,8 @@ playerS = False
 playerA = False
 playerD = False
 player5 = Player('pngwing.com (2).png', 5, win_height - 80, 4)
-monster5 = Enemy('monster.png', win_width - 80, 280, 2)
-final5 = GameSprite('motor.png', win_width - 120, win_height - 80, 0)
+monster5 = Enemy('5678.png', win_width - 80, 280, 2)
+final5 = GameSprite('rocket.png', win_width - 120, win_height - 80, 0)
 kick5 = pygame.mixer.Sound('kick.ogg')
 while True:
     window5.blit(background5, (0,0))
@@ -387,7 +371,7 @@ while True:
 
 window3 = pygame.display.set_mode((win_width, win_height))
 pygame.display.set_caption("Maze3")
-background3 = pygame.transform.scale(pygame.image.load("galaxy.jpg"), (win_width, win_height))
+background3 = pygame.transform.scale(pygame.image.load("7890.jpg"), (win_width, win_height))
 img_back = "galaxy.jpg"  # фон гри
 img_hero = "rocket.png"  # герой
 img_bullet = "bullet.png" # куля
